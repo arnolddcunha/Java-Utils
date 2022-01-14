@@ -156,7 +156,7 @@ public final class Functions {
     return ThreadLocalRandom.current().nextDouble(min, max);
   }
 
-  public ObjectMapper objectMapper() {
+  public static ObjectMapper objectMapper() {
     ObjectMapper objectMapper = new ObjectMapper();
     objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     objectMapper.disable(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES);
