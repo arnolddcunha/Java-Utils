@@ -1,9 +1,9 @@
 package org.skillfactory.utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.reflect.TypeToken;
 import javax.persistence.AttributeConverter;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.google.common.reflect.TypeToken;
 
 public class DBDataConverter<T> implements AttributeConverter<T, String> {
 
@@ -18,10 +18,7 @@ public class DBDataConverter<T> implements AttributeConverter<T, String> {
     }
 
     try {
-      ObjectMapper mapper = new ObjectMapper();
-
-      return mapper.writeValueAsString(data);
-
+      return Functions.objectMapper().writeValueAsString(data);
     } catch (JsonProcessingException e) {
       throw new RuntimeException(e);
     }
@@ -34,9 +31,7 @@ public class DBDataConverter<T> implements AttributeConverter<T, String> {
       return null;
     }
     try {
-      ObjectMapper mapper = new ObjectMapper();
-      return (T) mapper.readValue(s, typeClass);
-
+      return (T) Functions.objectMapper().readValue(s, typeClass);
     } catch (JsonProcessingException e) {
       throw new RuntimeException(e);
     }
