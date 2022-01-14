@@ -16,6 +16,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 public final class Functions {
 
   private static boolean debug = false;
@@ -151,6 +154,13 @@ public final class Functions {
 
   public static double randomDoubleBetween(double min, double max) {
     return ThreadLocalRandom.current().nextDouble(min, max);
+  }
+
+  public ObjectMapper objectMapper() {
+    ObjectMapper objectMapper = new ObjectMapper();
+    objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+    objectMapper.disable(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES);
+    return objectMapper;
   }
 
   public static void main1(String[] args) {
